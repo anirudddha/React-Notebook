@@ -37,18 +37,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title,description,tag}), // body data type must match "Content-Type" header
     });
-    response.json();
-    // console.log(json);
-
-    const note = {
-      "_id": "6506b2d64addf045d503d656b",
-      "user": "65007907d61d48c80768c9456",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2023-09-17T08:03:34.522Z",
-      "__v": 0
-    }
+    const note= await response.json();
     setNotes(notes.concat(note))
   }
 
