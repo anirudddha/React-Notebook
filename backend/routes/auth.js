@@ -12,10 +12,11 @@ router.post('/createUser', [
     body('name', 'enter a name').isLength({ min: 5 }),
     body('password').isLength({ min: 5 }),
 ], async (req, res) => {
+    let succes =false;
     //if there are errors return bad request and the errors
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        return res.status(400).json({ result: result.array() });
+        return res.status(400).json({ succes,result: result.array() });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -39,7 +40,8 @@ router.post('/createUser', [
         }
         const authToken = jwt.sign(data, JWT_SECRET);
         // .then(user => res.json(user));
-        res.json({authToken});
+        succes = true;
+        res.json({succes,authToken});
     } catch (error) {
         console.log(error.message);
         res.status(500).send("some error occured");
