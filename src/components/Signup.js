@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function Signup(props) {
     const [credentials,setCredentials] = useState({name:"",email: "",password:"",cpassword:""})
     let history = useNavigate();
 
@@ -27,9 +27,10 @@ function Signup() {
             // save the auth toke and redirect
             localStorage.setItem('token',json.authtoken);
             history("/");
+            props.showAlert("Account Created Succesfully","succes")
         }
         else{
-            alert("wrong")
+            props.showAlert("Invalid Credentials","danger")
         }
     }
 
@@ -51,7 +52,7 @@ function Signup() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                    <input type="cpassword" className="form-control" id="cpassword" name="cpassword" onChange={onChange} required minLength={5} />
+                    <input type="password" className="form-control" id="cpassword" name="cpassword" onChange={onChange} required minLength={5} />
                 </div>
                 
                 <button type="SignUp" className="btn btn-primary">Submit</button>
