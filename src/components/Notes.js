@@ -10,7 +10,8 @@ function Notes(props) {
     let history = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('token')!="undefined"){
+        console.log(localStorage.getItem('token'));
+        if(!(localStorage.getItem('token')==="undefined" || !localStorage.getItem('token'))){
             getNotes();
         }
         else{

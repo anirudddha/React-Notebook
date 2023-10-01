@@ -32,9 +32,10 @@ function Login(props) {
         setCredentials({...credentials,[e.target.name]: e.target.value});
     }
     return (
-        <div>
+        <div className='mt-3'>
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+                <h1>Login to Continue to iNotebook</h1>
+                <div className="mb-3 my-4">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
